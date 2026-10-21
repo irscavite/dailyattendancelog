@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#edf4f7" />
+  <title>Bacao & Enlin | Daily Employee Attendance</title>
+  <style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#17283a;background:#f3f6f9;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.46}.app-shell{min-height:100vh}.topbar{height:86px;padding:0 clamp(20px,4.4vw,70px);display:flex;align-items:center;justify-content:space-between;gap:18px;background:#fff;border-bottom:1px solid #e6edf2}.brand,.topbar-right,.date-row,.source-leading,.source-state,.button,.input-with-icon{display:flex;align-items:center}.brand{gap:14px}.brand-mark{width:46px;height:46px;border-radius:14px;background:#e7f1ff;color:#2563eb;display:grid;place-items:center}.brand-overline,.eyebrow,.control-label,.stat-label{font-size:11px;font-weight:800;letter-spacing:1.05px}.brand-overline{color:#7890a4;margin:0 0 3px}.brand strong{font-size:17px;letter-spacing:-.5px}.topbar-right{gap:20px}.read-only{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-size:11px;color:#158060;font-weight:800;letter-spacing:.6px}.dot{width:8px;height:8px;border-radius:50%;background:#13ad81}.button{justify-content:center;gap:8px;min-height:40px;border:1px solid #d8e2eb;background:#fff;border-radius:10px;padding:0 17px;font-weight:750;color:#34465b;font-size:13px;transition:.15s}.button:hover:not(:disabled){border-color:#a6bfd4;background:#f5faff}.button-primary{background:#2762e7;color:white;border-color:#2762e7}.button-primary:hover:not(:disabled){background:#1750d7;color:#fff;border-color:#1750d7}.button-small{min-height:37px;padding:0 13px}.main{max-width:1500px;padding:40px clamp(20px,4.4vw,70px) 30px;margin:auto}.page-intro{display:flex;justify-content:space-between;gap:30px;align-items:center;margin-bottom:29px}.eyebrow{color:#397ee9;margin:0 0 8px}.page-intro h1{font-size:clamp(28px,3vw,37px);margin:0 0 9px;letter-spacing:-1.2px;line-height:1.12}.subtitle{font-size:14px;color:#8190a2;margin:0;line-height:1.5}.date-panel{background:#fff;padding:16px 18px;border-radius:15px;border:1px solid #e1e9f1;box-shadow:0 4px 15px #14294307;min-width:355px}.control-label{display:block;color:#70869b;margin-bottom:9px}.date-row{gap:8px}.date-row input{color:#183249;border-radius:9px;border:1px solid #dce5ed;height:37px;padding:0 11px;min-width:150px;max-width:174px;font-weight:700;font-size:13px;background:#fff}.icon-button{height:37px;width:33px;border-radius:9px;background:#f5f8fb;border:1px solid #e0e7ef;color:#3a5470;font-size:23px;line-height:1}.icon-button:hover{background:#e8eff7}.sources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:20px}.source-card{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 19px;border:1px solid #e2eaf1;border-radius:13px;background:#fff}.source-leading{gap:12px}.source-icon{width:39px;height:39px;border-radius:11px;display:grid;place-items:center;font-size:14px;font-weight:900}.source-icon-blue{color:#1e64cf;background:#e8f2ff}.source-icon-teal{color:#0b8b8b;background:#e6f7f5}.source-title{font-size:11px;font-weight:900;letter-spacing:.45px}.source-subtitle{font-size:12px;color:#8597a9;margin-top:3px}.source-state{gap:7px;text-align:right;font-size:12px;font-weight:700;color:#6d8197}.status-indicator{height:8px;width:8px;border-radius:50%;background:#c8d3df;flex-shrink:0}.status-indicator.ok{background:#1fa877}.status-indicator.error{background:#f17170}.status-indicator.loading{background:#e6a942;animation:pulse 1s infinite}.status-indicator.empty{background:#9aaabe}@keyframes pulse{50%{opacity:.3}}.notice{border:1px solid #d6e4f6;background:#f2f8ff;color:#24557d;padding:13px 17px;margin-bottom:20px;border-radius:11px;font-size:13px;line-height:1.5;white-space:pre-wrap}.notice.warn{background:#fff9ec;border-color:#f5dfad;color:#77591b}.notice.error{background:#fff4f4;border-color:#f5cece;color:#9b3535}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:27px}.stat-card{background:#fff;border:1px solid #e0e8f0;border-radius:13px;padding:21px 22px;min-height:131px}.stat-label{color:#7890a3;letter-spacing:.65px;font-size:10px}.stat-value{font-size:33px;font-weight:850;letter-spacing:-1px;margin:12px 0 6px;line-height:1}.stat-caption{font-size:12px;color:#97a3ae}.table-card{background:#fff;border:1px solid #e0e9f1;border-radius:15px;overflow:hidden;box-shadow:0 4px 28px #18365406}.table-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:25px 26px 23px}.table-heading h2{font-size:18px;margin:0 0 7px;letter-spacing:-.35px}.table-heading p{font-size:12px;color:#91a1ae;margin:0}.filters{display:flex;align-items:flex-end;gap:15px;padding:0 26px 23px}.field{flex:1;min-width:160px}.search-field{flex:1.55}.filters select,.filters input{height:43px;width:100%;outline:none;border-radius:9px;border:1px solid #dae5ee;background:#fff;color:#3a526a;font-size:13px;padding:0 12px}.filters input:focus,.filters select:focus,.date-row input:focus{border-color:#4488ed;box-shadow:0 0 0 3px #3988eb20}.input-with-icon{gap:8px;border:1px solid #dae5ee;border-radius:9px;padding-left:12px;color:#92a4b5}.input-with-icon input{border:0;padding-left:0;flex:1;min-width:0}.input-with-icon:focus-within{border-color:#4488ed;box-shadow:0 0 0 3px #3988eb20}.input-with-icon input:focus{box-shadow:none;border:0}.table-scroll{width:100%;overflow:auto}table{border-collapse:collapse;min-width:900px;width:100%;text-align:left}th{background:#f7f9fc;border-top:1px solid #edf1f5;border-bottom:1px solid #e8eef4;color:#7a8ea2;font-size:10px;letter-spacing:.65px;font-weight:900;white-space:nowrap;padding:15px 18px}td{border-bottom:1px solid #eef2f6;padding:17px 18px;font-size:13px;color:#52677c}tr:last-child td{border-bottom:0}tbody tr:hover{background:#fbfdff}.th-index{width:60px;text-align:center}td:first-child{text-align:center;color:#a9b5c1}.emp-name{font-weight:800;color:#263d53}.emp-id{color:#74899d;font-size:12px}.time-text{font-weight:800;color:#314961;font-variant-numeric:tabular-nums}.time-empty{font-weight:500;color:#b9c3ce}.db-pill,.status-pill{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;font-size:10px;font-weight:800;border-radius:7px;white-space:nowrap}.db-pill.bacao{background:#eaf2ff;color:#2b66b8}.db-pill.bffa5{background:#e7f8f5;color:#0a8b83}.status-pill.complete{background:#e5f7ee;color:#178858}.status-pill.in-only{background:#fff4e0;color:#b97b18}.status-pill.out-only{background:#fff0e8;color:#be6e27}.status-pill.none{background:#f0f3f6;color:#778ba1}.table-empty{text-align:center;color:#8295a7;font-size:14px;padding:58px 20px}.table-footer{display:flex;justify-content:space-between;padding:17px 25px;background:#fff;border-top:1px solid #edf2f6;color:#90a1b0;font-size:12px}.site-footer{font-size:12px;color:#a0adba;text-align:center;padding-top:27px;line-height:1.6}@media(max-width:1050px){.page-intro{align-items:flex-start;flex-direction:column}.sources{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.date-panel{width:min(100%,370px)}}@media(max-width:680px){.topbar{height:auto;min-height:73px;padding:14px 18px}.brand-mark{width:41px;height:41px}.brand strong{font-size:14px}.brand-overline{font-size:9px}.topbar-right{gap:7px}.topbar-right .read-only{display:none}.topbar-right .button{padding:0 10px}.main{padding:26px 14px}.page-intro{gap:20px}.date-panel{min-width:0;max-width:100%;padding:15px}.date-row{gap:6px}.date-row input{min-width:0;max-width:none;flex:1}.date-row .button-small{padding:0 10px}.source-card{padding:14px 12px}.source-subtitle{font-size:11px}.source-message{font-size:11px}.stat-card{padding:15px;min-height:112px}.stats{gap:10px}.stat-value{font-size:28px}.table-heading{padding:20px 16px}.table-heading h2{font-size:16px}.button-primary{padding:0 10px}.filters{padding:0 16px 18px;flex-wrap:wrap;gap:10px}.filters .field{min-width:calc(50% - 10px)}.filters .search-field{min-width:100%;flex-basis:100%}.table-footer{padding:13px 16px;gap:10px;flex-wrap:wrap}td,th{padding:13px 14px}}
+
+/* Separate site views: Bacao and Enlin */
+.branch-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:13px}
+.branch-tab{border:1px solid #dde7f1;border-radius:14px;background:#fff;padding:17px 20px;display:flex;align-items:center;gap:13px;position:relative;text-align:left;color:#385167;box-shadow:0 2px 9px #19315005;transition:background .15s,border-color .15s,box-shadow .15s}
+.branch-tab:hover{border-color:#83aaeb;background:#fafdff}
+.branch-tab:focus-visible{outline:3px solid #85b1f7;outline-offset:2px}
+.branch-tab.active{border-color:#377de6;background:#f6faff;box-shadow:0 0 0 2px #347fe014}
+.branch-tab.active::after{content:'';position:absolute;bottom:0;left:19px;right:19px;height:3px;background:#367ce8;border-radius:3px 3px 0 0}
+.tab-monogram{height:44px;width:44px;border-radius:12px;display:grid;place-items:center;font-size:18px;font-weight:900;flex-shrink:0}
+.bacao-monogram{color:#1e64cf;background:#e8f2ff}.enlin-monogram{color:#0b8b8b;background:#e6f7f5}
+.tab-text{flex:1;display:flex;flex-direction:column;gap:4px}.tab-text strong{font-size:17px}.tab-text small{font-size:12px;color:#8799ab}
+.tab-status-indicator{width:9px;height:9px;border-radius:50%;background:#bbc8d6}.tab-status-indicator.ok{background:#22ae7b}.tab-status-indicator.loading{background:#e8a53b;animation:pulse 1s infinite}.tab-status-indicator.error{background:#ea6668}.tab-status-indicator.empty{background:#9aaabe}
+.connection-strip{min-height:47px;border-radius:10px;background:#eef4f9;color:#4b6a86;display:flex;align-items:center;gap:9px;padding:10px 15px;margin-bottom:21px;font-size:12px}
+.connection-strip strong{color:#25476d}.source-host{margin-left:auto;color:#96a5b3;white-space:nowrap;font-size:11px}
+.table-card table{min-width:710px}
+.filters .search-field{flex:2}
+@media(max-width:680px){.branch-tabs{gap:9px}.branch-tab{padding:13px 11px;gap:9px}.tab-monogram{width:38px;height:38px;font-size:15px}.tab-text strong{font-size:15px}.tab-text small{font-size:10px}.source-host{display:none}.connection-strip{margin-bottom:16px}.filters .field{min-width:100%}}
+
+</style>
+  <script>
+/*
+ * BACAO / ENLIN EMPLOYEE ATTENDANCE VIEWER — READ ONLY
+ * Firebase Realtime Database REST API. No SDK or keys required for a database
+ * that already permits your browser's authorized READ operations.
+ *
+ * IMPORTANT: Never weaken Firebase security rules to make this viewer work.
+ * If your RTDB denies reads, integrate Firebase Authentication with authorized
+ * employee-attendance reads, or serve via an authenticated backend.
+ */
+'use strict';
+
+const SOURCES = [
+  {
+    id: 'bacao',
+    label: 'Bacao',
+    url: 'https://truckmonitoringbacao-default-rtdb.asia-southeast1.firebasedatabase.app',
+  },
+  {
+    id: 'enlin',
+    label: 'Enlin',
+    url: 'https://truckmonitoring-bffa5-default-rtdb.asia-southeast1.firebasedatabase.app',
+  },
+];
+
+// These are ONLY attendance paths. Never read the whole database root.
+// Primary confirmed convention: employee_attendance/{YYYY-MM-DD}/{employeeId}
+// If your second application uses another attendance-only node, add it here.
+const ATTENDANCE_PATHS = [
+  'employee_attendance',
+  'employeeAttendance',
+  'employee-attendance',
+  'employee_timekeeping',
+  'employeeTimekeeping',
+];
+
+const PH_TZ = 'Asia/Manila';
+const REQUEST_TIMEOUT_MS = 12000;
+const $ = (id) => document.getElementById(id);
+const state = { date: '', activeSource: 'bacao', rows: [], loading: false, requestSequence: 0, cache: new Map() };
+
+function todayInPhilippines() {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: PH_TZ, year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(new Date());
+  const part = (type) => parts.find((p) => p.type === type)?.value || '';
+  return `${part('year')}-${part('month')}-${part('day')}`;
+}
+
+function addDays(date, amount) {
+  const [y, m, d] = date.split('-').map(Number);
+  const next = new Date(Date.UTC(y, m - 1, d + amount));
+  return `${next.getUTCFullYear()}-${String(next.getUTCMonth() + 1).padStart(2, '0')}-${String(next.getUTCDate()).padStart(2, '0')}`;
+}
+
+function getField(obj, names) {
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return undefined;
+  const byNormalizedName = new Map(Object.keys(obj).map((k) => [k.toLowerCase().replace(/[^a-z0-9]/g, ''), k]));
+  for (const name of names) {
+    const actual = byNormalizedName.get(name.toLowerCase().replace(/[^a-z0-9]/g, ''));
+    if (actual !== undefined) {
+      const value = obj[actual];
+      if (value !== undefined && value !== null && value !== '' && value !== false &&
+          !(typeof value === 'string' && ['null', 'undefined', '-', 'n/a'].includes(value.trim().toLowerCase()))) {
+        return value;
+      }
+    }
+  }
+  return undefined;
+}
+
+const IN_KEYS = [
+  'timeIn', 'time_in', 'timeInAt', 'inAt', 'inTime', 'clockIn', 'checkIn',
+  'checkInTime', 'check_in_time', 'check_in', 'inTimestamp', 'timeInTimestamp',
+  'timestampIn', 'firstIn', 'punchIn', 'in',
+];
+const OUT_KEYS = [
+  'timeOut', 'time_out', 'timeOutAt', 'outAt', 'outTime', 'clockOut', 'checkOut',
+  'checkOutTime', 'check_out_time', 'check_out', 'outTimestamp', 'timeOutTimestamp',
+  'timestampOut', 'lastOut', 'punchOut', 'out',
+];
+const NAME_KEYS = ['employeeName', 'employee_name', 'fullName', 'full_name', 'empName', 'name', 'employee'];
+const ID_KEYS = ['employeeId', 'employee_id', 'empId', 'employeeNo', 'empNo', 'empNumber', 'employeeCode', 'id'];
+
+function unwrapTime(value) {
+  if (value && typeof value === 'object') {
+    return getField(value, ['time', 'timestamp', 'datetime', 'dateTime', 'at', 'value', 'iso', 'timeIn', 'timeOut']) || '';
+  }
+  return value;
+}
+
+function formatTime(value) {
+  value = unwrapTime(value);
+  if (value === undefined || value === null || value === '' || typeof value === 'boolean') return '';
+
+  // Unix seconds and milliseconds (including Firebase server timestamps).
+  const n = typeof value === 'number' ? value : (/^\d{10,13}$/.test(String(value).trim()) ? Number(value) : NaN);
+  if (Number.isFinite(n)) {
+    const millis = n < 1e11 ? n * 1000 : n;
+    const date = new Date(millis);
+    return Number.isNaN(date.getTime()) ? '' : date.toLocaleTimeString('en-US', {
+      timeZone: PH_TZ, hour: '2-digit', minute: '2-digit', hour12: true,
+    });
+  }
+
+  const raw = String(value).trim();
+  // Proper timezone-aware ISO timestamps should be converted to Manila time.
+  if (/\d{4}-\d{2}-\d{2}[T\s]\d{2}:\d{2}/.test(raw) && /(?:Z|[+-]\d{2}:?\d{2})$/i.test(raw)) {
+    const parsed = new Date(raw.includes(' ') ? raw.replace(' ', 'T') : raw);
+    if (!Number.isNaN(parsed.getTime())) {
+      return parsed.toLocaleTimeString('en-US', {
+        timeZone: PH_TZ, hour: '2-digit', minute: '2-digit', hour12: true,
+      });
+    }
+  }
+
+  // Local time values (12h, 24h, and full datetime without an offset).
+  const match = raw.match(/(?:^|[T\s])(\d{1,2}):(\d{2})(?::\d{2}(?:\.\d+)?)?\s*(AM|PM)?(?:$|\s)/i) ||
+                raw.match(/^(\d{1,2}):(\d{2})(?::\d{2})?\s*(AM|PM)?$/i);
+  if (match) {
+    let hh = Number(match[1]); const mm = Number(match[2]);
+    if (hh > 23 || mm > 59) return raw;
+    if (match[3]) {
+      if (hh < 1 || hh > 12) return raw;
+      hh = (hh % 12) + (match[3].toUpperCase() === 'PM' ? 12 : 0);
+    }
+    return `${String(hh % 12 || 12).padStart(2, '0')}:${String(mm).padStart(2, '0')} ${hh >= 12 ? 'PM' : 'AM'}`;
+  }
+  if (/^\d{4}$/.test(raw)) {
+    const hh = Number(raw.slice(0, 2)); const mm = Number(raw.slice(2));
+    if (hh < 24 && mm < 60) return `${String(hh % 12 || 12).padStart(2, '0')}:${String(mm).padStart(2, '0')} ${hh >= 12 ? 'PM' : 'AM'}`;
+  }
+  return raw;
+}
+
+function looksLikeAttendanceRecord(record) {
+  return record && typeof record === 'object' && !Array.isArray(record) && (
+    getField(record, IN_KEYS) !== undefined || getField(record, OUT_KEYS) !== undefined ||
+    (getField(record, ID_KEYS) !== undefined && getField(record, NAME_KEYS) !== undefined)
+  );
+}
+
+function extractDayRows(dayPayload, source) {
+  const collected = [];
+  function collect(node, keyHint, depth) {
+    if (!node || typeof node !== 'object' || depth > 4) return;
+    if (looksLikeAttendanceRecord(node)) {
+      const employeeId = String(getField(node, ID_KEYS) || keyHint || '').trim();
+      let employeeName = getField(node, NAME_KEYS);
+      if (employeeName && typeof employeeName === 'object') {
+        employeeName = getField(employeeName, ['name', 'fullName', 'employeeName']);
+      }
+      employeeName = String(employeeName || employeeId || 'Unknown Employee').trim();
+      const timeIn = formatTime(getField(node, IN_KEYS));
+      const timeOut = formatTime(getField(node, OUT_KEYS));
+      const status = timeIn && timeOut ? 'complete' : timeIn ? 'in-only' : timeOut ? 'out-only' : 'none';
+      collected.push({
+        employeeId: employeeId || '—', employeeName, timeIn, timeOut,
+        source: source.id, sourceLabel: source.label, status,
+      });
+      return;
+    }
+    for (const [key, child] of Object.entries(node)) {
+      if (child && typeof child === 'object') {
+        if (/^(meta|metadata|settings|config|summary|totals)$/i.test(key)) continue;
+        collect(child, key, depth + 1);
+      }
+    }
+  }
+  collect(dayPayload, '', 0);
+  const unique = new Map();
+  collected.forEach((r) => unique.set(`${r.source}|${r.employeeId}|${r.employeeName}`, r));
+  return [...unique.values()];
+}
+
+async function firebaseRead(url, signal) {
+  const response = await fetch(url, { method: 'GET', cache: 'no-store', signal, headers: { Accept: 'application/json' } });
+  const content = await response.text();
+  let data;
+  try { data = JSON.parse(content); } catch { throw new Error(`Invalid Firebase response (HTTP ${response.status}).`); }
+  if (!response.ok || (data && data.error)) {
+    const message = typeof data?.error === 'string' ? data.error : `HTTP ${response.status}`;
+    throw new Error(`Firebase access failed: ${message}`);
+  }
+  return data;
+}
+
+function setSourceStatus(sourceId, kind, message) {
+  const tabIndicator = $(`tab-status-${sourceId}`);
+  if (tabIndicator) {
+    tabIndicator.className = `tab-status-indicator ${kind}`;
+    tabIndicator.title = message;
+  }
+  if (sourceId === state.activeSource) {
+    $('activeSourceIndicator').className = `status-indicator ${kind}`;
+    $('activeSourceStatus').textContent = message;
+  }
+}
+
+function syncActiveSource() {
+  SOURCES.forEach((source) => {
+    const active = source.id === state.activeSource;
+    const tab = $(`tab-${source.id}`);
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
+  });
+  const source = SOURCES.find((item) => item.id === state.activeSource);
+  $('activeSourceName').textContent = source.label;
+  $('activeSourceDatabase').textContent = new URL(source.url).hostname.split('.')[0];
+  $('tableTitle').textContent = `${source.label} Employee Attendance`;
+  $('attendance-panel').setAttribute('aria-labelledby', `tab-${source.id}`);
+  const status = $(`tab-status-${source.id}`);
+  $('activeSourceIndicator').className = `status-indicator ${status.className.replace('tab-status-indicator', '').trim() || 'idle'}`;
+  $('activeSourceStatus').textContent = status.title || 'Not loaded';
+}
+
+function switchSource(sourceId) {
+  if (sourceId === state.activeSource || !SOURCES.some((source) => source.id === sourceId)) return;
+  state.activeSource = sourceId;
+  syncActiveSource();
+  $('searchInput').value = '';
+  $('statusSelect').value = 'all';
+  loadAttendance();
+}
+
+async function loadSource(source, date, requestSequence) {
+  setSourceStatus(source.id, 'loading', 'Loading…');
+  let hadUnrecognizedObject = false;
+  const possibleDateKeys = [date];
+  // Alternate common date key for implementations that store YYYYMMDD.
+  possibleDateKeys.push(date.replaceAll('-', ''));
+
+  try {
+    for (const path of ATTENDANCE_PATHS) {
+      for (const dateKey of possibleDateKeys) {
+        if (requestSequence !== state.requestSequence) return [];
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+        let payload;
+        try {
+          payload = await firebaseRead(`${source.url}/${encodeURIComponent(path)}/${encodeURIComponent(dateKey)}.json`, controller.signal);
+        } finally { clearTimeout(timer); }
+        if (requestSequence !== state.requestSequence) return [];
+        if (payload === null || payload === undefined) continue;
+        const rows = extractDayRows(payload, source);
+        if (rows.length) {
+          setSourceStatus(source.id, 'ok', `${rows.length} record${rows.length === 1 ? '' : 's'}`);
+          return rows;
+        }
+        hadUnrecognizedObject = true;
+      }
+    }
+    setSourceStatus(source.id, 'empty', hadUnrecognizedObject ? 'Unrecognized attendance format' : 'No records for date');
+    if (hadUnrecognizedObject) throw new Error('Attendance data was found but its fields were not recognized. Check the record schema.');
+    return [];
+  } catch (error) {
+    if (requestSequence !== state.requestSequence) return [];
+    if (error?.name === 'AbortError') {
+      setSourceStatus(source.id, 'error', 'Request timed out');
+      throw new Error('Request timed out.');
+    }
+    const errorText = String(error?.message || error);
+    setSourceStatus(source.id, 'error', /permission|denied|401|403/i.test(errorText) ? 'Permission denied' : 'Connection error');
+    throw new Error(errorText);
+  }
+}
+
+async function loadAttendance(force = false) {
+  const date = $('dateInput').value;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return;
+  const previousDate = state.date;
+  const source = SOURCES.find((item) => item.id === state.activeSource);
+  state.date = date;
+  const requestSequence = ++state.requestSequence;
+  state.loading = true;
+  state.rows = [];
+  $('csvBtn').disabled = true;
+  $('notice').hidden = true;
+  $('recordSummary').textContent = `Retrieving ${source.label} employee attendance…`;
+  $('tableBody').replaceChildren(makeEmptyRow(`Loading ${source.label} attendance for ${date}…`));
+  $('footerCount').textContent = 'Loading…';
+  if (previousDate && previousDate !== date) {
+    SOURCES.forEach((src) => setSourceStatus(src.id, 'idle', 'Not loaded for this date'));
+  }
+  syncActiveSource();
+  setSummary([], true);
+  const key = `${source.id}|${date}`;
+
+  if (!force && state.cache.has(key)) {
+    const entry = state.cache.get(key);
+    state.rows = entry.rows;
+    state.loading = false;
+    setSourceStatus(source.id, entry.rows.length ? 'ok' : 'empty', entry.rows.length ? `${entry.rows.length} records (cached)` : 'No records for date (cached)');
+    setSummary(state.rows, false);
+    renderTable();
+    return;
+  }
+
+  try {
+    const rows = await loadSource(source, date, requestSequence);
+    if (requestSequence !== state.requestSequence) return;
+    rows.sort((a, b) => a.employeeName.localeCompare(b.employeeName, undefined, { numeric: true }));
+    state.rows = rows;
+    state.cache.set(key, { rows });
+  } catch (error) {
+    if (requestSequence !== state.requestSequence) return;
+    const notice = $('notice');
+    notice.hidden = false;
+    notice.className = 'notice error';
+    notice.textContent = `${source.label}: ${error?.message || String(error)}\n\nEmployee attendance access requires authorized Firebase reads. Do not make personal data public to bypass permissions.`;
+  }
+  if (requestSequence !== state.requestSequence) return;
+  state.loading = false;
+  setSummary(state.rows, false);
+  renderTable();
+}
+
+function setSummary(rows, loading) {
+  const count = (status) => rows.filter((r) => r.status === status).length;
+  $('totalCount').textContent = loading ? '—' : rows.length.toLocaleString();
+  $('completeCount').textContent = loading ? '—' : count('complete').toLocaleString();
+  $('inOnlyCount').textContent = loading ? '—' : count('in-only').toLocaleString();
+  $('otherCount').textContent = loading ? '—' : (count('out-only') + count('none')).toLocaleString();
+  $('recordSummary').textContent = loading ? 'Loading…' : `${rows.length} record${rows.length === 1 ? '' : 's'} for ${state.date}`;
+}
+
+function filteredRows() {
+  const query = $('searchInput').value.trim().toLowerCase();
+  const status = $('statusSelect').value;
+  return state.rows.filter((r) =>
+    (status === 'all' || r.status === status) &&
+    (!query || `${r.employeeName} ${r.employeeId}`.toLowerCase().includes(query))
+  );
+}
+
+function makeEmptyRow(message) {
+  const tr = document.createElement('tr');
+  const td = document.createElement('td');
+  td.colSpan = 6;
+  const empty = document.createElement('div');
+  empty.className = 'table-empty';
+  empty.textContent = message;
+  td.appendChild(empty);
+  tr.appendChild(td);
+  return tr;
+}
+
+function makeCell(text, className = '') {
+  const td = document.createElement('td');
+  if (className) td.className = className;
+  td.textContent = String(text);
+  return td;
+}
+
+function renderTable() {
+  if (state.loading) return;
+  const rows = filteredRows();
+  $('footerCount').textContent = `${rows.length.toLocaleString()} displayed / ${state.rows.length.toLocaleString()} total records`;
+  $('csvBtn').disabled = rows.length === 0;
+  const tbody = $('tableBody');
+  tbody.replaceChildren();
+  if (!rows.length) {
+    tbody.appendChild(makeEmptyRow(state.rows.length ? 'No employees match your filters.' : 'No attendance records found for this date. Check source status above.'));
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  rows.forEach((r, i) => {
+    const tr = document.createElement('tr');
+    tr.appendChild(makeCell(i + 1));
+    tr.appendChild(makeCell(r.employeeName, 'emp-name'));
+    tr.appendChild(makeCell(r.employeeId, 'emp-id'));
+    tr.appendChild(makeCell(r.timeIn || '—', r.timeIn ? 'time-text' : 'time-empty'));
+    tr.appendChild(makeCell(r.timeOut || '—', r.timeOut ? 'time-text' : 'time-empty'));
+    const status = document.createElement('td');
+    const pill = document.createElement('span');
+    pill.className = `status-pill ${r.status}`;
+    pill.textContent = ({ complete: 'COMPLETE', 'in-only': 'IN ONLY', 'out-only': 'OUT ONLY', none: 'NO IN / OUT' })[r.status];
+    status.appendChild(pill); tr.appendChild(status);
+    fragment.appendChild(tr);
+  });
+  tbody.appendChild(fragment);
+}
+
+function csvSafe(value) {
+  let text = String(value === null || value === undefined ? '' : value);
+  // Protect Excel against formula injection from any user-entered Firebase text.
+  if (/^[\s]*[=+@\-\t\r]/.test(text)) text = `'${text}`;
+  return `"${text.replaceAll('"', '""')}"`;
+}
+
+function exportCsv() {
+  const rows = filteredRows();
+  if (!rows.length) return;
+  const data = [
+    ['Date', 'Employee ID', 'Employee Name', 'Time IN', 'Time OUT', 'Status'],
+    ...rows.map((r) => [state.date, r.employeeId, r.employeeName, r.timeIn, r.timeOut,
+      ({ complete: 'Complete', 'in-only': 'IN Only', 'out-only': 'OUT Only', none: 'No IN / OUT' })[r.status]]),
+  ];
+  const csv = '\ufeff' + data.map((row) => row.map(csvSafe).join(',')).join('\r\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  link.href = url;
+  link.download = `Employee-Attendance-${state.activeSource}-${state.date}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 3000);
+}
+
+function initialize() {
+  $('dateInput').value = todayInPhilippines();
+  $('dateInput').addEventListener('change', () => loadAttendance());
+  $('prevDay').addEventListener('click', () => { $('dateInput').value = addDays($('dateInput').value, -1); loadAttendance(); });
+  $('nextDay').addEventListener('click', () => { $('dateInput').value = addDays($('dateInput').value, 1); loadAttendance(); });
+  $('todayBtn').addEventListener('click', () => { $('dateInput').value = todayInPhilippines(); loadAttendance(); });
+  $('refreshTop').addEventListener('click', () => loadAttendance(true));
+  SOURCES.forEach((source) => {
+    $('tab-' + source.id).addEventListener('click', () => switchSource(source.id));
+    $('tab-' + source.id).addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      const next = source.id === 'bacao' ? 'enlin' : 'bacao';
+      switchSource(next);
+      $('tab-' + next).focus();
+    });
+  });
+  $('searchInput').addEventListener('input', renderTable);
+  $('statusSelect').addEventListener('change', renderTable);
+  $('csvBtn').addEventListener('click', exportCsv);
+  syncActiveSource();
+  loadAttendance();
+}
+
+// In Node-based tests the parser can be verified with fixtures without accessing Firebase.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { extractDayRows, formatTime, addDays, getField, csvSafe };
+}
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize);
+  else initialize();
+}
+
+</script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 2v4M16 2v4M4 9h16M9 15l2 2 4-4"/></svg>
+        </div>
+        <div>
+          <p class="brand-overline">ATTENDANCE MONITORING</p>
+          <strong>Daily Employee Attendance</strong>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="read-only"><span class="dot"></span> READ-ONLY VIEWER</span>
+        <button id="refreshTop" class="button button-ghost" type="button" title="Refresh records">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 1-2.4-5.7"/><path d="M20 4v6h-6"/></svg>
+          <span>Refresh</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="page-intro">
+        <div>
+          <p class="eyebrow">EMPLOYEE TIMEKEEPING</p>
+          <h1>Daily Attendance</h1>
+          <p class="subtitle">Daily employee Time IN and Time OUT. Select Bacao or Enlin to view each location separately.</p>
+        </div>
+        <div class="date-panel" aria-label="Select attendance date">
+          <span class="control-label">ATTENDANCE DATE</span>
+          <div class="date-row">
+            <button id="prevDay" class="icon-button" type="button" title="Previous day" aria-label="Previous day">&#8249;</button>
+            <input id="dateInput" type="date" aria-label="Attendance date" />
+            <button id="nextDay" class="icon-button" type="button" title="Next day" aria-label="Next day">&#8250;</button>
+            <button id="todayBtn" class="button button-small" type="button">Today</button>
+          </div>
+        </div>
+      </section>
+
+      <nav class="branch-tabs" role="tablist" aria-label="Attendance branch">
+        <button type="button" id="tab-bacao" class="branch-tab active" role="tab" aria-selected="true" aria-controls="attendance-panel" data-source="bacao">
+          <span class="tab-monogram bacao-monogram" aria-hidden="true">B</span>
+          <span class="tab-text"><strong>Bacao</strong><small>Employee attendance</small></span>
+          <span class="tab-status-indicator" id="tab-status-bacao" aria-hidden="true"></span>
+        </button>
+        <button type="button" id="tab-enlin" class="branch-tab" role="tab" aria-selected="false" aria-controls="attendance-panel" data-source="enlin" tabindex="-1">
+          <span class="tab-monogram enlin-monogram" aria-hidden="true">E</span>
+          <span class="tab-text"><strong>Enlin</strong><small>Employee attendance</small></span>
+          <span class="tab-status-indicator" id="tab-status-enlin" aria-hidden="true"></span>
+        </button>
+      </nav>
+      <div class="connection-strip" id="connectionStrip" role="status" aria-live="polite">
+        <span class="status-indicator idle" id="activeSourceIndicator" aria-hidden="true"></span>
+        <span><strong id="activeSourceName">Bacao</strong> &middot; <span id="activeSourceStatus">Not loaded</span></span>
+        <span id="activeSourceDatabase" class="source-host">truckmonitoringbacao</span>
+      </div>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+      <section class="stats" aria-label="Daily attendance summary">
+        <article class="stat-card"><div class="stat-label">TOTAL RECORDS</div><div class="stat-value" id="totalCount">—</div><div class="stat-caption">For selected date</div></article>
+        <article class="stat-card"><div class="stat-label">COMPLETE IN & OUT</div><div class="stat-value" id="completeCount">—</div><div class="stat-caption">Both timestamps recorded</div></article>
+        <article class="stat-card"><div class="stat-label">IN ONLY</div><div class="stat-value" id="inOnlyCount">—</div><div class="stat-caption">Awaiting Time OUT</div></article>
+        <article class="stat-card"><div class="stat-label">OTHER / INCOMPLETE</div><div class="stat-value" id="otherCount">—</div><div class="stat-caption">No IN or missing IN</div></article>
+      </section>
+
+      <section class="table-card" id="attendance-panel" role="tabpanel" aria-labelledby="tab-bacao">
+        <div class="table-heading">
+          <div><h2 id="tableTitle">Bacao Employee Attendance</h2><p id="recordSummary">Select a date to view attendance.</p></div>
+          <button id="csvBtn" class="button button-primary" type="button" disabled>
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg> Export CSV
+          </button>
+        </div>
+        <div class="filters">
+          <label class="field search-field"><span class="control-label">SEARCH EMPLOYEE</span><span class="input-with-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="searchInput" type="search" placeholder="Search name or employee ID" autocomplete="off" /></span></label>
+          <label class="field"><span class="control-label">ATTENDANCE STATUS</span><select id="statusSelect"><option value="all">All statuses</option><option value="complete">Complete</option><option value="in-only">IN only</option><option value="out-only">OUT only</option><option value="none">No IN / OUT</option></select></label>
+        </div>
+        <div class="table-scroll">
+          <table id="attendanceTable">
+            <thead><tr><th class="th-index">#</th><th>EMPLOYEE NAME</th><th>EMPLOYEE ID</th><th>TIME IN</th><th>TIME OUT</th><th>STATUS</th></tr></thead>
+            <tbody id="tableBody"><tr><td colspan="6"><div class="table-empty">Loading daily attendance…</div></td></tr></tbody>
+          </table>
+        </div>
+        <div class="table-footer"><span id="footerCount">0 records</span><span>Timezone: Philippine Time (UTC+8)</span></div>
+      </section>
+      <footer class="site-footer">Bacao and Enlin are separate, read-only Firebase views. Only attendance records are requested. Access depends on Firebase security rules.</footer>
+    </main>
+  </div>
+</body>
+</html>
